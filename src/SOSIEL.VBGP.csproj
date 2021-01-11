@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<Copyright>Copyright © Garry Sotnik 2020</Copyright>
+    <Authors>Garry Sotnik</Authors>
+    <AssemblyVersion>0.0.1</AssemblyVersion>
+    <FileVersion>0.0.1</FileVersion>
+    <Version>0.0.1</Version>
+    <AssemblyName>SOSIEL.VBGP-v0.0.1</AssemblyName>    
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Reference Include="SOSIEL-v3.0.0, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>.\lib\SOSIEL-v3.0.0.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="$(ProjectDir)postbuild.bat" />
+  </Target>
+
+</Project>
