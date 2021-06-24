@@ -13,7 +13,7 @@ using NLog;
 
 using SOSIEL.VBGP.Configuration;
 
-namespace Landis.Extension.SOSIELHarvest.SOSIELExtensions.VBGP
+namespace SOSIEL.VBGP.Input
 {
     /// <summary>
     /// Reads VBGP confguration from a CSV file.
