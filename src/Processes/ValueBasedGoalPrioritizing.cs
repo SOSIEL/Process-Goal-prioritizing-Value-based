@@ -22,13 +22,13 @@ namespace SOSIEL.VBGP.Processes
         /// <summary>
         /// Configuration object.
         /// </summary>
-        private readonly ValueBasedGoalPrioritizingConfiguration _config;
+        private readonly VBGPConfiguration _config;
 
         /// <summary>
         /// Initializes new instance of the ValueBasedGoalPrioritizing class.
         /// </summary>
         /// <param name="config">Process configuration.</param>
-        public ValueBasedGoalPrioritizing(ValueBasedGoalPrioritizingConfiguration config)
+        public ValueBasedGoalPrioritizing(VBGPConfiguration config)
         {
             if (config == null)
                 throw new ArgumentNullException(nameof(config));
@@ -80,23 +80,23 @@ namespace SOSIEL.VBGP.Processes
             var priorValue = goalState.PriorValue;
             var gainLossMapping = _config.GainAndLossToValue[goal.Name];
 
-            switch (goal.Type)
+            switch (goal.Tendency)
             {
-                case GoalType.Maximize:
+                case GoalTendency.Maximize:
                 {
                     if (priorValue == 0.0) return 1.0;
                     var loss = Math.Min(0.0, value / priorValue - 1.0);
                     return 1.0 - FindNearestValue(gainLossMapping.LossToValue, loss);
                 }
 
-                case GoalType.EqualToOrAboveFocalValue:
+                case GoalTendency.EqualToOrAboveFocalValue:
                 {
                     if (focalValue == 0.0) return 1.0;
                     var loss = Math.Min(0.0, value / focalValue - 1.0);
                     return 1.0 - FindNearestValue(gainLossMapping.LossToValue, loss);
                 }
 
-                case GoalType.MaintainAtValue:
+                case GoalTendency.MaintainAtValue:
                 {
                     if (focalValue == 0.0) return 1.0;
                     var k = value / focalValue;
@@ -105,7 +105,7 @@ namespace SOSIEL.VBGP.Processes
                         : 1.0 - FindNearestValue(gainLossMapping.LossToValue, k - 1.0);
                 }
 
-                case GoalType.Minimize:
+                case GoalTendency.Minimize:
                 {
                     if (priorValue == 0.0) return 1.0;
                     var loss = Math.Max(0.0, value / priorValue - 1.0);
@@ -116,7 +116,7 @@ namespace SOSIEL.VBGP.Processes
                 {
                     throw new SosielAlgorithmException(
                         "Cannot calculate relative difference between goal value and focal" +
-                        $" goal value for goal type {goal.Type}");
+                        $" goal value for goal tendency {goal.Tendency}");
                 }
             }
         }

@@ -121,7 +121,7 @@ namespace SOSIEL.VBGP.Configuration
     /// <summary>
     /// Configuration for the value-based goal prioritizing algorithm.
     /// </summary>
-    public class ValueBasedGoalPrioritizingConfiguration
+    public class VBGPConfiguration
     {
         /// <summary>
         /// Gain or Loss to Value mappings for the each goal.
@@ -137,7 +137,7 @@ namespace SOSIEL.VBGP.Configuration
         /// Initializes a new instance of the ValueBasedGoalPrioritizingConfiguration class.
         /// </summary>
         /// <param name="gainOrLossToValue">Gain or Loss to corresponding Value mapping elements for each goal.</param>
-        public ValueBasedGoalPrioritizingConfiguration(IReadOnlyDictionary<string, GainOrLossToValueMappingElement[]> gainOrLossToValue)
+        public VBGPConfiguration(IReadOnlyDictionary<string, GainOrLossToValueMappingElement[]> gainOrLossToValue)
         {
             // Check that we've got some mappings
             if (gainOrLossToValue == null)
