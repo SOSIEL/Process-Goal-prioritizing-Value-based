@@ -18,7 +18,7 @@ namespace Landis.Extension.SOSIELHarvest.SOSIELExtensions.VBGP
     /// <summary>
     /// Reads VBGP confguration from a CSV file.
     /// </summary>
-    class VBGPConfigurationReader
+    public class VBGPConfigurationReader
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
